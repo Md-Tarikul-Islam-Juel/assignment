@@ -7,8 +7,8 @@ import {CommonAuthService} from './commonAuth.service';
 
 @Injectable()
 export class OtpService {
-  private maxFailedAttempts: number; // Store the max failed attempts
-  private lockoutTime: number; // Store the lockout time in minutes
+  private maxFailedAttempts: number;
+  private lockoutTime: number;
 
   constructor(
     private readonly redisService: RedisService,

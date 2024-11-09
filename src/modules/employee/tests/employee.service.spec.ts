@@ -1,5 +1,3 @@
-// File: employee/tests/unit/employee.service.spec.ts
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { EmployeeService } from '../services/employee.service';
 import { PrismaService } from '../../prisma/prisma.service';
@@ -7,7 +5,7 @@ import { LoggerService } from '../../logger/logger.service';
 import { ConfigService } from '@nestjs/config';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
-// Mock the PrismaService methods
+
 const mockPrismaService = {
   employee: {
     create: jest.fn(),
@@ -35,7 +33,7 @@ describe('EmployeeService', () => {
         {
           provide: ConfigService,
           useValue: {
-            get: jest.fn().mockReturnValue('test_value'), // Mock any required properties here
+            get: jest.fn().mockReturnValue('test_value'),
           },
         },
       ],

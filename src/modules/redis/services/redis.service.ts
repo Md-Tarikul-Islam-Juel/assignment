@@ -24,7 +24,6 @@ export class RedisService {
     await this.redisClient.del(key);
   }
 
-  // Fetch keys with a pattern (used in batch update)
   async keys(pattern: string): Promise<string[]> {
     return this.redisClient.keys(pattern);
   }
