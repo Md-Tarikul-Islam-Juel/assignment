@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  email     String  @unique
+  password  String
+  firstName String?
+  lastName  String?
+
+  loginSource  String  @default("default")
+  authorizerId String?
+
+  verified         Boolean
+  isForgetPassword Boolean
+
+  mfaEnabled         Boolean   @default(false)
+  failedOtpAttempts  Int       @default(0)
+  accountLockedUntil DateTime?
+
+  lastActivityAt DateTime?
+
+  logoutPin String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Employee {
+  id           Int        @id @default(autoincrement())
+  name         String
+  positionId   Int
+  positionName String
+  parentId     Int?       @default(0)
+  parent       Employee?  @relation("EmployeeToParent", fields: [parentId], references: [id])
+  children     Employee[] @relation("EmployeeToParent")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("employees")
+}
